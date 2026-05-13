@@ -134,6 +134,8 @@ class ComposerStaticInit7ab6fc67c2c3b4adad7f8aabf0580255
         ),
         'A' => 
         array (
+            'App\\Controller\\' => 15,
+            'App\\' => 4,
             'Amp\\Sync\\' => 9,
             'Amp\\Socket\\' => 11,
             'Amp\\Serialization\\' => 18,
@@ -335,6 +337,14 @@ class ComposerStaticInit7ab6fc67c2c3b4adad7f8aabf0580255
         'Composer\\Pcre\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/pcre/src',
+        ),
+        'App\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/controller',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/data',
         ),
         'Amp\\Sync\\' => 
         array (

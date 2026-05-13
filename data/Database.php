@@ -12,7 +12,6 @@ class Database
     public static function obtenerConexion(): PDO
     {
         if (self::$instancia === null) {
-            // data/musicos.db (este fichero está en data/)
             $ruta = __DIR__ . '/musicos.db';
 
             try {

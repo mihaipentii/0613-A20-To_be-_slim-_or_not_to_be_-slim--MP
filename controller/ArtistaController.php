@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class ArtistaController
 {
-    // Página de inicio: muestra los 4 artistas con foto y nombre
+    // Página de inicio que muestra los 4 artistas con foto y nombre
     public function home(Request $request, Response $response, array $args): Response
     {
         $db = Database::obtenerConexion();
@@ -24,7 +24,7 @@ class ArtistaController
         return $response;
     }
 
-    // Página de detalle: muestra la info completa + vídeo del artista
+    // Página de detalle que muestra la info completa + vídeo del artista
     public function detalle(Request $request, Response $response, array $args): Response
     {
         $db = Database::obtenerConexion();

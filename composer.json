@@ -73,7 +73,9 @@
     },
     "autoload": {
         "psr-4": {
-            "Slim\\": "Slim"
+            "Slim\\": "Slim",
+            "App\\Controller\\": "controller/",
+            "App\\": "data/"
         }
     },
     "autoload-dev": {
@@ -102,4 +104,8 @@
     "config": {
         "sort-packages": true
     }
+
+    
 }
+
+

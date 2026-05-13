@@ -51,6 +51,8 @@ return array(
     'Composer\\XdebugHandler\\' => array($vendorDir . '/composer/xdebug-handler/src'),
     'Composer\\Semver\\' => array($vendorDir . '/composer/semver/src'),
     'Composer\\Pcre\\' => array($vendorDir . '/composer/pcre/src'),
+    'App\\Controller\\' => array($baseDir . '/controller'),
+    'App\\' => array($baseDir . '/data'),
     'Amp\\Sync\\' => array($vendorDir . '/amphp/sync/src'),
     'Amp\\Socket\\' => array($vendorDir . '/amphp/socket/src'),
     'Amp\\Serialization\\' => array($vendorDir . '/amphp/serialization/src'),
