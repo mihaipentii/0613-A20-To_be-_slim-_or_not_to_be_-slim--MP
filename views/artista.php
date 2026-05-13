@@ -44,7 +44,7 @@ ob_start();
 
 <?php if (!empty($artista['youtube_embed'])): ?>
 <div class="seccion">
-    <h3>🎬 Vídeo destacado</h3>
+    <h3>🎬 Vídeo de su arte</h3>
     <div class="video-wrapper">
         <iframe
             src="<?= htmlspecialchars($artista['youtube_embed']) ?>"
