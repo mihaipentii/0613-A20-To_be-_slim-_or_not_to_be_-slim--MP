@@ -9,18 +9,18 @@ class Database
 {
     private static ?PDO $instancia = null;
 
-    // Devuelve la conexión PDO (singleton)
     public static function obtenerConexion(): PDO
     {
         if (self::$instancia === null) {
-            $rutaBD = __DIR__ . '/../database/musicos.db';
+            // data/musicos.db (este fichero está en data/)
+            $ruta = __DIR__ . '/musicos.db';
 
             try {
-                self::$instancia = new PDO('sqlite:' . $rutaBD);
+                self::$instancia = new PDO('sqlite:' . $ruta);
                 self::$instancia->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$instancia->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                die('Error al conectar con la base de datos: ' . $e->getMessage());
+                die('Error de base de datos: ' . $e->getMessage());
             }
         }
 
