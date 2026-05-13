@@ -15,7 +15,7 @@ $app->get('/', function (Request $request, Response $response) {
         <meta charset='UTF-8'>
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <title>Pàgina Principal</title>
-    </head>
+    </head> 
     <body>
         <h1><a href='http://www.itb.cat' target='_BLANK'>Institut Tecnològic de Barcelona</a></h1>
         <h3>Professors: Rai i David</h3>
