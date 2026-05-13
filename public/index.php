@@ -1,31 +1,50 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+
 use Slim\Factory\AppFactory;
+use Slim\Views\Twig;
+use Slim\Views\TwigMiddleware;
+use App\Database;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// Crear la app Slim
 $app = AppFactory::create();
 
-$app->get('/', function (Request $request, Response $response) {
-    $htmlContent = "
-    <!DOCTYPE html>
-    <html lang='ca'>
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-        <title>Pàgina Principal</title>
-    </head> 
-    <body>
-        <h1><a href='http://www.itb.cat' target='_BLANK'>Institut Tecnològic de Barcelona</a></h1>
-        <h3>Professors: Rai i David</h3>
-        <p>Visca el Giro!</p>
-    </body>
-    </html>
-    ";
-    $response->getBody()->write($htmlContent);
-    return $response->withHeader('Content-Type', 'text/html');
+// Configurar Twig
+$twig = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
+$app->add(TwigMiddleware::create($app, $twig));
+
+// RUTA: página principal → lista de artistas
+$app->get('/', function ($request, $response, $args) {
+    $db = Database::obtenerConexion();
+
+    $stmt = $db->query('SELECT id, nombre, slug, genero, origen, imagen_url, bio_corta FROM artistas ORDER BY nombre');
+    $artistas = $stmt->fetchAll();
+
+    $view = Twig::fromRequest($request);
+    return $view->render($response, 'home.html.twig', [
+        'artistas' => $artistas,
+    ]);
+});
+
+// RUTA: página de un artista por slug
+$app->get('/artista/{slug}', function ($request, $response, $args) {
+    $db = Database::obtenerConexion();
+
+    $slug = $args['slug'];
+    $stmt = $db->prepare('SELECT * FROM artistas WHERE slug = ?');
+    $stmt->execute([$slug]);
+    $artista = $stmt->fetch();
+
+    // Si no existe el artista sale 404
+    if (!$artista) {
+        return $response->withStatus(404)->getBody()->write('Artista no encontrado.');
+    }
+
+    $view = Twig::fromRequest($request);
+    return $view->render($response, 'artista.html.twig', [
+        'artista' => $artista,
+    ]);
 });
 
 $app->run();
-?>
