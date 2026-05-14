@@ -1,4 +1,4 @@
-# 🎵 MusicBio · Slim Framework
+# 🎵 MusicGOATS · Slim Framework
 
 Aplicación web dinámica hecha con **Slim 4** y **PHP** que muestra biografías de músicos con datos extraídos de una base de datos **SQLite**.
 
